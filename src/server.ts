@@ -40,21 +40,6 @@ const initDb = async () => {
       )
     `)
     
-    // // চেক কনস্ট্রেইন্ট যোগ করুন (PostgreSQL এর জন্য)
-    // await pool.query(`
-    //   DO $$ 
-    //   BEGIN
-    //     IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'issues_type_check') THEN
-    //       ALTER TABLE issues ADD CONSTRAINT issues_type_check 
-    //       CHECK (type IN ('bug', 'feature_request'));
-    //     END IF;
-    //     IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'issues_status_check') THEN
-    //       ALTER TABLE issues ADD CONSTRAINT issues_status_check 
-    //       CHECK (status IN ('open', 'in_progress', 'resolved'));
-    //     END IF;
-    //   END $$;
-    // `)
-    
     console.log('✅ Database initialized successfully')
   } catch (err) {
     console.error('Error initializing database:', err)
