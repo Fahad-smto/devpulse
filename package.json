@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/Fahad-smto/devpulse/issues"
   },
-  "homepage": "https://github.com/Fahad-smto/devpulse#readme"
+  "homepage": "https://github.com/Fahad-smto/devpulse#readme",
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  }
 }
