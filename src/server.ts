@@ -1,4 +1,4 @@
-import express, { type Application, type Request, type Response } from 'express'
+import express, { response, type Application, type Request, type Response } from 'express'
 const app: Application = express()
 const port = 3000
 import { Pool } from "pg"
@@ -13,7 +13,7 @@ const pool = new Pool({
 
 const initDb = async () => {
   try {
-    // users table - সঠিক সিনট্যাক্স
+    // users table -  
     await pool.query(`
       CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
@@ -26,7 +26,7 @@ const initDb = async () => {
       )
     `)
 
-    // issues table - assignment অনুযায়ী
+    // issues table -  
     await pool.query(`
       CREATE TABLE IF NOT EXISTS issues (
         id SERIAL PRIMARY KEY,
@@ -40,7 +40,7 @@ const initDb = async () => {
       )
     `)
 
-    console.log('✅ Database initialized successfully')
+    console.log(' Database initialized successfully')
   } catch (err) {
     console.error('Error initializing database:', err)
   }
@@ -52,29 +52,39 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!')
 })
 
+
 app.post('/', async (req: Request, res: Response) => {
+  try {
 
-  const { name, email, password } = req.body
+    const { name, email, password } = req.body
 
-  const result = await pool.query(
-    'INSERT INTO users (name,email,password) VALUES ($1, $2, $3) RETURNING *',
-    [name, email, password]
-  );
+    const result = await pool.query(
+      'INSERT INTO users (name,email,password) VALUES ($1, $2, $3) RETURNING *',
+      [name, email, password]
+    );
 
-  console.log(result)
+    console.log(result.rows[0])
 
 
-  console.log(req.body)
-  res.status(200).json({
-    message: 'Data received successfully',
-    success: true,
-    data:{
-      name,
-      email,
-      password  
-    }
-  })
+    console.log(req.body)
+    res.status(200).json({
+      message: 'Data received successfully',
+      success: true,
+      data: {
+        name,
+        email,
+        password
+      }
+    })
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: err.message || 'Internal server error',
+      errors: err.stack
+    });
+  }
 })
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
