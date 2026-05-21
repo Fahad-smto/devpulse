@@ -25,7 +25,7 @@ const initDb = async () => {
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `)
-    
+
     // issues table - assignment অনুযায়ী
     await pool.query(`
       CREATE TABLE IF NOT EXISTS issues (
@@ -39,7 +39,7 @@ const initDb = async () => {
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `)
-    
+
     console.log('✅ Database initialized successfully')
   } catch (err) {
     console.error('Error initializing database:', err)
@@ -53,8 +53,26 @@ app.get('/', (req: Request, res: Response) => {
 })
 
 app.post('/', async (req: Request, res: Response) => {
+
+  const { name, email, password } = req.body
+
+  const result = await pool.query(
+    'INSERT INTO users (name,email,password) VALUES ($1, $2, $3) RETURNING *',
+  );
+
+  console.log(result)
+
+
   console.log(req.body)
-  res.json({ success: true, message: 'Received' })
+  res.status(200).json({
+    message: 'Data received successfully',
+    success: true,
+    data:{
+      name,
+      email,
+      password  
+    }
+  })
 })
 
 app.listen(port, () => {
