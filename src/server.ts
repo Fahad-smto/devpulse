@@ -158,7 +158,6 @@ app.put('/users/:id', async (req: Request, res: Response) => {
   }
 });
 
-
 app.delete('/users/:id', async (req: Request, res: Response) => {
   try {
     const userId = req.params.id;
@@ -184,6 +183,7 @@ app.delete('/users/:id', async (req: Request, res: Response) => {
     });
   }
 });
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
