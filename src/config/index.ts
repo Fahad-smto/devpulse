@@ -5,7 +5,7 @@ import path from 'path';
 dotenv.config({
     path:path.join(process.cwd(),'.env')});
  
-    console.log('PORT:', process.env.PORT); // এটা যোগ করুন
+   
 
     const config = {
         connectionString: process.env.CONNECTIONSTRING as string,
