@@ -1,14 +1,15 @@
 import express, { response, type Application, type Request, type Response } from 'express'
 const app: Application = express()
-const port = 3000
+const port = config.port
 import { Pool } from "pg"
+import config from './config/index.js'
 
 // middleware
 app.use(express.json())
 
 // db connection
 const pool = new Pool({
-  connectionString:'' ,
+  connectionString: config.connectionString
 })
 
 const initDb = async () => {
