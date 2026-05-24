@@ -8,7 +8,7 @@ app.use(express.json())
 
 // db connection
 const pool = new Pool({
-  connectionString: "postgresql://neondb_owner:npg_5EXFSGobhY9j@ep-young-bar-aozmg4su-pooler.c-2.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+  connectionString:'' ,
 })
 
 const initDb = async () => {
@@ -59,7 +59,7 @@ app.post('/', async (req: Request, res: Response) => {
     const { name, email, password } = req.body
 
     const result = await pool.query(
-      'INSERT INTO users (name,email,password) VALUES ($1, $2, $3) RETURNING *',
+      `INSERT INTO users (name,email,password) VALUES ($1, $2, $3) RETURNING *`,
       [name, email, password]
     );
 
@@ -134,7 +134,10 @@ app.put('/users/:id', async (req: Request, res: Response) => {
     const { name, email, password } = req.body;
 
     const result = await pool.query(
-      'UPDATE users SET name = $1, email = $2, password = $3 WHERE id = $4 RETURNING *',
+      `UPDATE users SET name =COALESCE($1,name) ,
+       email =COALESCE ($2,email),
+        password = COALESCE($3,password)
+         WHERE id = $4 RETURNING *`,
       [name, email, password, userId]
     );
 
@@ -162,7 +165,7 @@ app.delete('/users/:id', async (req: Request, res: Response) => {
   try {
     const userId = req.params.id;
 
-    const result = await pool.query('DELETE FROM users WHERE id = $1 RETURNING *', [userId]);
+    const result = await pool.query(`DELETE FROM users WHERE id = $1 RETURNING *`, [userId]);
 
     if (result.rows.length === 0) {
       return res.status(404).json({
