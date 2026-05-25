@@ -1,7 +1,7 @@
 import express, { response, type Application, type Request, type Response } from 'express'
 const app: Application = express()
 const port = config.port
-
+import { Pool } from "pg"
 import config from './config/index.js'
 
 // middleware
