@@ -12,4 +12,4 @@ dotenv.config({
         port: process.env.PORT || 3000
     }
 
-export  config;
+export default config;
