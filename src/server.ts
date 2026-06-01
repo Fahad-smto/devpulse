@@ -188,10 +188,6 @@ app.delete('/users/:id', async (req: Request, res: Response) => {
   }
 });
 
-app._router.stack.forEach((middleware: any) => {
-  if (middleware.route) {
-    const method = Object.keys(middleware.route.methods)[0].toUpperCase(); 
-
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
