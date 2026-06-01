@@ -46,7 +46,7 @@ const initDb = async () => {
     console.error('Error initializing database:', err)
   }
 }
-
+ 
 initDb()
 
 app.get('/', (req: Request, res: Response) => {
@@ -187,6 +187,10 @@ app.delete('/users/:id', async (req: Request, res: Response) => {
     });
   }
 });
+
+app._router.stack.forEach((middleware: any) => {
+  if (middleware.route) {
+    const method = Object.keys(middleware.route.methods)[0].toUpperCase(); 
 
 
 app.listen(port, () => {
