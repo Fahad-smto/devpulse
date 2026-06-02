@@ -5,7 +5,7 @@ import { userController } from "./user.controller.js";
 
 const router = Router()
 
-router.post('/', userController. )
+router.post('/', userController.userCreate)
 
 
 
