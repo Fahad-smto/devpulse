@@ -3,6 +3,7 @@ const app: Application = express()
 const port = config.port
 import { Pool } from "pg"
 import config from './config/index.js'
+import { initDb, pool } from './db/index.js'
 
 // middleware
 app.use(express.json())
