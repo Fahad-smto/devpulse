@@ -4,9 +4,12 @@ const port = config.port
 import { Pool } from "pg"
 import config from './config/index.js'
 import { initDb, pool } from './db/index.js'
+import { userRouter } from './modules/user/user.route.js'
 
 // middleware
 app.use(express.json())
+
+app.use("/api/v1/users",userRouter)
 
 
 app.get('/', (req: Request, res: Response) => {
