@@ -12,6 +12,9 @@ const createUserIntoDB =async(payload:any)=>{
 
         console.log(result.rows[0])
 
+ 
+}
 
-        console.log(req.body)
+export const userService ={
+    createUserIntoDB
 }
