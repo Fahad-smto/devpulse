@@ -1,39 +1,15 @@
-// src/modules/users/user.routes.ts
-
+// src/modules/user/user.routes.ts
 import express from 'express';
-import { UserController } from './user.controller';
-import { authenticate } from '../../middleware/auth.middleware';
-import { authorize } from '../../middleware/authorize.middleware';
+import { userController } from './user.controller.js';
+ 
 
 const router = express.Router();
-const userController = new UserController();
 
-// পাবলিক রাউটস
-router.post('/signup', (req, res) => userController.signup(req, res));
-router.post('/login', (req, res) => userController.login(req, res));
-
-// প্রোটেক্টেড রাউটস (JWT প্রয়োজন)
-router.get('/profile', authenticate, (req, res) => {
-    // নিজের প্রোফাইল দেখার জন্য
-    if (req.user) {
-        userController.getUserById({ ...req, params: { id: req.user.id.toString() } } as any, res);
-    }
-});
-
-router.get('/', authenticate, authorize(['maintainer']), (req, res) => 
-    userController.getAllUsers(req, res)
-);
-
-router.get('/:id', authenticate, (req, res) => 
-    userController.getUserById(req, res)
-);
-
-router.patch('/:id', authenticate, (req, res) => 
-    userController.updateUser(req, res)
-);
-
-router.delete('/:id', authenticate, authorize(['maintainer']), (req, res) => 
-    userController.deleteUser(req, res)
-);
+// Routes
+router.get('/', userController.getAllUsers);      // GET /api/v1/users
+router.get('/:id', userController.getUserById);   // GET /api/v1/users/1
+router.post('/', userController.createUser);      // POST /api/v1/users
+router.put('/:id', userController.updateUser);    // PUT /api/v1/users/1
+router.delete('/:id', userController.deleteUser); // DELETE /api/v1/users/1
 
 export default router;
