@@ -1,9 +1,10 @@
 import type { Request, Response } from "express";
 import { pool } from "../../db/index.js";
+import { userService } from "./user.service.js";
 
 const userCreate = async (req: Request, res: Response) => {
     try {
-
+       const result = await userService.createUserIntoDB(req.body)
         res.status(200).json({
             message: 'Data received successfully',
             success: true,
