@@ -1,6 +1,7 @@
+import { pool } from "../../db/index.js";
 
 
-const createUserIntoDB =async()=>{
+const createUserIntoDB =async(payload:any)=>{
 
         const { name, email, password } = req.body
 
