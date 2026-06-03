@@ -1,5 +1,4 @@
 import type { Request, Response } from "express";
-import { pool } from "../../db/index.js";
 import { userService } from "./user.service.js";
 
 const userCreate = async (req: Request, res: Response) => {
@@ -8,11 +7,6 @@ const userCreate = async (req: Request, res: Response) => {
         res.status(200).json({
             message: 'Data received successfully',
             success: true,
-            data: {
-                name,
-                email,
-                password
-            }
         })
     } catch (err: any) {
         res.status(500).json({
