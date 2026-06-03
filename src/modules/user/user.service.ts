@@ -1,8 +1,8 @@
 // src/modules/users/user.service.ts
-
-import { pool } from '../../config/database';
+import { pool } from "../../db/index.js";
 import bcrypt from 'bcrypt';
-import { ICreateUser, IUpdateUser, IUser, IUserResponse } from './user.interface';
+import type { ICreateUser, IUserResponse,IUpdateUser,IUser } from "./user.interface.js";
+
 
 export class UserService {
     
