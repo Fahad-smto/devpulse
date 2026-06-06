@@ -66,7 +66,7 @@ const findUserByEmail = async (email: string) => {
 
 export const userServices = {
     getAllUsersFromDB,
-    getUserByIdFromDB,
+   
     createUserInDB,
     updateUserInDB,
     deleteUserFromDB,
