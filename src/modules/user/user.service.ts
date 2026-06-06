@@ -68,7 +68,7 @@ export const userServices = {
     getAllUsersFromDB,
     getUserByIdFromDB,
     createUserInDB,
-  
+    updateUserInDB,
     deleteUserFromDB,
     findUserByEmail
 };
