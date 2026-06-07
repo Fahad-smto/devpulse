@@ -9,10 +9,3 @@ export const signToken = (payload: { id: number; name: string; role: string }): 
     return jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
 };
 
-export const verifyToken = (token: string): any => {
-    try {
-        return jwt.verify(token, JWT_SECRET);
-    } catch (error) {
-        return null;
-    }
-};
