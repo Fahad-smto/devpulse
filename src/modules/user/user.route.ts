@@ -12,4 +12,4 @@ router.post('/', userController.createUser);      // POST /api/v1/users
 router.put('/:id', userController.updateUser);    // PUT /api/v1/users/1
 router.delete('/:id', userController.deleteUser); // DELETE /api/v1/users/1
 
-// export default router;
+export default router;
