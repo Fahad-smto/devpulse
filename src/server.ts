@@ -2,7 +2,7 @@
 import app from './app.js';
  import { initDb } from './db/index.js';
 
-const PORT = 3000;
+const PORT = 2000;
 
 const startServer = async () => {
     try {
