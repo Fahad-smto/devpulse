@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 });
 
 // User routes
-app.use('/api/v1/users', userRouter);
+// app.use('/api/v1/users', userRouter);
 
 // 404 handler
 app.use((req, res) => {
