@@ -17,9 +17,3 @@ export interface ICreateUser {
     role?: string;
 }
 
-export interface IUpdateUser {
-    name?: string;
-    email?: string;
-    password?: string;
-    role?: string;
-}
