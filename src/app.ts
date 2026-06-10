@@ -27,11 +27,11 @@ app.get('/', (req, res) => {
 app.use('/api/v1/users', userRouter);
 
 // 404 handler
-app.use((req, res) => {
-    res.status(404).json({
-        success: false,
-        message: 'Route not found'
-    });
-});
+// app.use((req, res) => {
+//     res.status(404).json({
+//         success: false,
+//         message: 'Route not found'
+//     });
+// });
 
 export default app;
