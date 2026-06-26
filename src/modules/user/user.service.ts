@@ -70,5 +70,5 @@ export const userServices = {
     createUserInDB,
     updateUserInDB,
     deleteUserFromDB,
-   
+    findUserByEmail
 };
